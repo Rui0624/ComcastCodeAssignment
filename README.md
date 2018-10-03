@@ -1,4 +1,4 @@
-# ComcastCodeAssignment
+# Comcast Code Assignment
 
 I chose MVP to keep the code maintainable and scalable, further to ease unit testing
 
