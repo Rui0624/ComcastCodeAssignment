@@ -1,9 +1,21 @@
 package xfinity.com.comcastcodeassignment.model;
 
-public class CharacterModel {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
+/**
+ * CharacterModel is the POJO class for each item
+ */
+public class CharacterModel implements Serializable{
+
+    @SerializedName("Text")
+    @Expose
     private String text;
 
+    @SerializedName("Icon")
+    @Expose
     private Icon icon;
 
     public boolean isUseGrid() {

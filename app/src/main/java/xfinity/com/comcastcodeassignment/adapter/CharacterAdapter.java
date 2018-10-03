@@ -18,11 +18,17 @@ import xfinity.com.comcastcodeassignment.R;
 import xfinity.com.comcastcodeassignment.model.CharacterModel;
 import xfinity.com.comcastcodeassignment.utils.CharacterSpliter;
 
+/**
+ * CharacterAdapter is used into the RecyclerView for both grid view or list view
+ */
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> implements View.OnClickListener{
 
     private Context context;
     private List<CharacterModel> data;
     private OnItemClicked mOnItemClicked;
+
+    private static final int GRID_VIEW = 0;
+    private static final int LIST_VIEW = 1;
 
     public interface OnItemClicked{
         void onItemClicked(View view, CharacterModel characterModel);
@@ -40,14 +46,22 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         }
     }
 
+    /**
+     * The constructor to define the adatper
+     * @param context
+     * @param data
+     */
     public CharacterAdapter(Context context, List<CharacterModel> data) {
         this.context = context;
         this.data = data;
     }
 
-    private static final int GRID_VIEW = 0;
-    private static final int LIST_VIEW = 1;
 
+    /**
+     * The getItemViewType is used to check the viewType
+     * @param position
+     * @return the view type as int
+     */
     @Override
     public int getItemViewType(int position) {
         return data.get(position).isUseGrid() ? GRID_VIEW : LIST_VIEW;
@@ -62,6 +76,11 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         return new CharacterViewHolder(view);
     }
 
+    /**
+     * Bind the ViewHolder with each of data
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
         if(holder.iv_itemImage != null){
@@ -70,7 +89,6 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
                 Picasso.with(context)
                         .load(data.get(position).getIcon().getUrl())
                         .placeholder(R.drawable.image_not_available)
-                        .fit()
                         .into(holder.iv_itemImage);
             }
 
@@ -85,15 +103,18 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         return data.size();
     }
 
+    /**
+     * CharacterViewHolder is used to define the each of item in the recyclerview
+     */
     class CharacterViewHolder extends RecyclerView.ViewHolder{
         TextView tv_itemTitle;
         ImageView iv_itemImage;
 
-        public CharacterViewHolder(@NonNull View itemView) {
+        CharacterViewHolder(@NonNull View itemView) {
             super( itemView );
 
-            tv_itemTitle = (TextView) itemView.findViewById( R.id.tv_itemTitle);
-            iv_itemImage = (ImageView) itemView.findViewById(R.id.iv_itemImage);
+            tv_itemTitle = itemView.findViewById( R.id.tv_itemTitle);
+            iv_itemImage = itemView.findViewById(R.id.iv_itemImage);
 
             itemView.setOnClickListener( new View.OnClickListener() {
                 @Override

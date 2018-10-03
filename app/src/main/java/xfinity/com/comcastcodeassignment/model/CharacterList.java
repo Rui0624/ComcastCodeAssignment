@@ -1,10 +1,18 @@
 package xfinity.com.comcastcodeassignment.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
+/**
+ * CharacterList is POJO class for parsing network call
+ */
 public class CharacterList {
 
-    private List<CharacterModel> characterModelList = null;
+    @SerializedName("RelatedTopics")
+    @Expose
+    private List<CharacterModel> characterModelList;
 
     public CharacterList(List<CharacterModel> characterModelList){
         this.characterModelList = characterModelList;
