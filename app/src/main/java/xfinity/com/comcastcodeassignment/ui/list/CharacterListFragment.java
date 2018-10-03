@@ -36,37 +36,37 @@ public class CharacterListFragment extends Fragment implements CharacterContract
     private boolean isGrid = false;
     private static final String TOGGLE_STATE = "toggle";
 
-    private CharacterAdapter adapter;
     private static final String TAG = "CharacterListFragment";
     private OnListClicked mOnListClicked;
-    CharacterComponent characterComponent;
+    private CharacterComponent characterComponent;
 
     @Inject
-    CharacterPresenter presenter;
+    public CharacterPresenter presenter;
 
     /**
      * OnListClicked interface is used to communicate between fragment and activity
      */
-    public interface OnListClicked{
+    public interface OnListClicked {
         void onItemSelected(View view, CharacterModel item);
     }
 
 
     /**
      * Set the list to the adapter
-     * @param list
+     *
+     * @param list set the list to be display
      */
     @Override
     public void display(CharacterList list) {
-        for(CharacterModel characterModel : list.getCharacterModelList()){
-            characterModel.setUseGrid(isGrid);
+        for (CharacterModel characterModel : list.getCharacterModelList()) {
+            characterModel.setUseGrid( isGrid );
         }
 
-        Log.i( TAG, "display: " + list.getCharacterModelList().get(0).isUseGrid() );
+        Log.i( TAG, "display: " + list.getCharacterModelList().get( 0 ).isUseGrid() );
 
-        adapter = new CharacterAdapter(getContext(), list.getCharacterModelList());
-        rv_list.setAdapter(adapter);
-        adapter.setOnItemClickedListener(this);
+        CharacterAdapter adapter = new CharacterAdapter( getContext(), list.getCharacterModelList() );
+        rv_list.setAdapter( adapter );
+        adapter.setOnItemClickedListener( this );
     }
 
     @Subscribe
@@ -74,11 +74,11 @@ public class CharacterListFragment extends Fragment implements CharacterContract
 
         this.isGrid = isGrid;
         Log.i( TAG, "onEvent: " + this.isGrid );
-        if(isGrid){
-            rv_list.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        if (isGrid) {
+            rv_list.setLayoutManager( new GridLayoutManager( getContext(), 3 ) );
             presenter.getCharacter();
         } else {
-            rv_list.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+            rv_list.setLayoutManager( new LinearLayoutManager( getContext(), LinearLayoutManager.VERTICAL, false ) );
             presenter.getCharacter();
         }
     }
@@ -91,9 +91,9 @@ public class CharacterListFragment extends Fragment implements CharacterContract
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_list, container, false);
-        EventBus.getDefault().register(this);
-        rv_list = view.findViewById(R.id.rv_list);
+        View view = inflater.inflate( R.layout.fragment_list, container, false );
+        EventBus.getDefault().register( this );
+        rv_list = view.findViewById( R.id.rv_list );
 
 
         // presenter = new CharacterPresenter(this, new CharacterRepository(new CharacterRemoteDataSource()));
@@ -101,16 +101,16 @@ public class CharacterListFragment extends Fragment implements CharacterContract
 
 
         characterComponent = DaggerCharacterComponent.builder()
-                .characterPresenterModule(new CharacterPresenterModule(new CharacterRepository(new CharacterRemoteDataSource()), this)).build();
+                .characterPresenterModule( new CharacterPresenterModule( new CharacterRepository( new CharacterRemoteDataSource() ), this ) ).build();
 
-        characterComponent.injectPresenterComponent(this);
+        characterComponent.injectPresenterComponent( this );
 
-        if(getArguments() != null){
-            isGrid = getArguments().getBoolean(TOGGLE_STATE);
-            if(isGrid){
-                rv_list.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        if (getArguments() != null) {
+            isGrid = getArguments().getBoolean( TOGGLE_STATE );
+            if (isGrid) {
+                rv_list.setLayoutManager( new GridLayoutManager( getContext(), 3 ) );
             } else {
-                rv_list.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+                rv_list.setLayoutManager( new LinearLayoutManager( getContext(), LinearLayoutManager.VERTICAL, false ) );
             }
         }
 
@@ -123,7 +123,7 @@ public class CharacterListFragment extends Fragment implements CharacterContract
 
     @Override
     public void onItemClicked(View view, CharacterModel item) {
-        mOnListClicked.onItemSelected(view, item);
+        mOnListClicked.onItemSelected( view, item );
     }
 
     @Override
@@ -131,8 +131,8 @@ public class CharacterListFragment extends Fragment implements CharacterContract
         super.onAttach( context );
         try {
             mOnListClicked = (OnListClicked) getActivity();
-        }catch (ClassCastException e){
-            throw new ClassCastException("must implement OnListener");
+        } catch (ClassCastException e) {
+            throw new ClassCastException( "must implement OnListener" );
         }
 
     }

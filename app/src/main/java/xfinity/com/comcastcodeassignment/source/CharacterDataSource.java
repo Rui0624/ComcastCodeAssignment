@@ -6,7 +6,10 @@ package xfinity.com.comcastcodeassignment.source;
  */
 public interface CharacterDataSource {
 
-    interface RemoteCharacterCallback{}
-    interface LocalCharacterCallback{}
+    interface RemoteCharacterCallback {
+    }
+
+    interface LocalCharacterCallback {
+    }
 
 }

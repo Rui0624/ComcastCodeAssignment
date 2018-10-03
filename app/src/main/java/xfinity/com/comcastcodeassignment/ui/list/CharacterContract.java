@@ -7,11 +7,11 @@ import xfinity.com.comcastcodeassignment.model.CharacterList;
  * CharacterContract is the interface for View and Presenter
  */
 public interface CharacterContract {
-    interface ICharacterView{
+    interface ICharacterView {
         void display(CharacterList list);
     }
 
-    interface ICharacterPresenter{
+    interface ICharacterPresenter {
         void getCharacter();
     }
 }

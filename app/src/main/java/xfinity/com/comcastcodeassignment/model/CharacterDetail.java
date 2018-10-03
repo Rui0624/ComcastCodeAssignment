@@ -1,9 +1,9 @@
 package xfinity.com.comcastcodeassignment.model;
 
 public class CharacterDetail {
-    String title;
-    String description;
-    String iconUrl;
+    private String title;
+    private String description;
+    private String iconUrl;
 
     public CharacterDetail(String title, String description, String iconUrl) {
         this.title = title;

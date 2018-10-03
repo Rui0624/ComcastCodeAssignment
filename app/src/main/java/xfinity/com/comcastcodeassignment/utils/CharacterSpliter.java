@@ -10,21 +10,20 @@ import java.util.List;
 public class CharacterSpliter {
 
     /**
-     *
      * @param text check the index of " - " in the text and return the 2 substrings which divided by the " - "
      * @return a String list which contains 2 elements, first element is title, and second is description
      */
-    public static List<String> splitTitleDes(String text){
+    public static List<String> splitTitleDes(String text) {
         List<String> res = new ArrayList<>();
 
-        int splitIdx = text.indexOf(" - ");
+        int splitIdx = text.indexOf( " - " );
 
-        if(splitIdx < 0){
-            res.add(text);
-            res.add(text);
-        }else {
-            res.add(text.substring(0, splitIdx));
-            res.add(text.substring(splitIdx + 3));
+        if (splitIdx < 0) {
+            res.add( text );
+            res.add( text );
+        } else {
+            res.add( text.substring( 0, splitIdx ) );
+            res.add( text.substring( splitIdx + 3 ) );
         }
 
         return res;

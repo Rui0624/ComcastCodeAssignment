@@ -9,8 +9,8 @@ import xfinity.com.comcastcodeassignment.ui.list.CharacterPresenter;
 @Module
 public class CharacterPresenterModule {
 
-    private CharacterRepository repository;
-    private CharacterContract.ICharacterView view;
+    private final CharacterRepository repository;
+    private final CharacterContract.ICharacterView view;
 
     public CharacterPresenterModule(CharacterRepository repository, CharacterContract.ICharacterView view) {
         this.repository = repository;
@@ -18,7 +18,7 @@ public class CharacterPresenterModule {
     }
 
     @Provides
-    public CharacterPresenter getCharacterPresenter(){
-        return new CharacterPresenter(view, repository);
+    public CharacterPresenter getCharacterPresenter() {
+        return new CharacterPresenter( view, repository );
     }
 }

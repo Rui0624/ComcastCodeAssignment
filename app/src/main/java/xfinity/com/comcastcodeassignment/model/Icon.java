@@ -8,12 +8,13 @@ import java.io.Serializable;
 /**
  * Icon class is used to define the icon
  */
-public class Icon implements Serializable{
+public class Icon implements Serializable {
 
     @SerializedName("URL")
     @Expose
     private String url;
-    public Icon(){
+
+    public Icon() {
 
     }
 

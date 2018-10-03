@@ -9,19 +9,20 @@ import xfinity.com.comcastcodeassignment.BuildConfig;
 /**
  * CharacterClient is used to define the network client
  */
-public class CharacterClient {
+class CharacterClient {
     private static Retrofit retrofit;
 
     /**
      * create or return the retrofit instance which is singleton in the project
+     *
      * @return retrofit instance
      */
     public static Retrofit getRetrofit() {
-        if(retrofit == null){
+        if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl( BuildConfig.BASE_URL)
-                    .addConverterFactory( GsonConverterFactory.create())
-                    .addCallAdapterFactory( RxJava2CallAdapterFactory.create())
+                    .baseUrl( BuildConfig.BASE_URL )
+                    .addConverterFactory( GsonConverterFactory.create() )
+                    .addCallAdapterFactory( RxJava2CallAdapterFactory.create() )
                     .build();
         }
 

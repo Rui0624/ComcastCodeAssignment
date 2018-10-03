@@ -14,36 +14,33 @@ import xfinity.com.comcastcodeassignment.R;
  * the DetailsFragment is contained in this activity
  */
 public class CharacterDetailsActivity extends AppCompatActivity {
-    private Toolbar tb_details;
-    private TextView tv_toolbarDetails;
-    private CharacterDetailsFragment detailsFragment;
-    CharacterDetail characterDetail;
+    private CharacterDetail characterDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_character_details );
 
-        tb_details = findViewById(R.id.tb_details);
-        setSupportActionBar(tb_details);
+        Toolbar tb_details = findViewById( R.id.tb_details );
+        setSupportActionBar( tb_details );
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null){
+        if (extras != null) {
             characterDetail = new CharacterDetail(
-                extras.getString(CharacterListActivity.TITLE),
-                extras.getString( CharacterListActivity.DESCRIPTION),
-                extras.getString( CharacterListActivity.URL));
+                    extras.getString( CharacterListActivity.TITLE ),
+                    extras.getString( CharacterListActivity.DESCRIPTION ),
+                    extras.getString( CharacterListActivity.URL ) );
         }
 
 
-        tv_toolbarDetails = findViewById(R.id.tv_toolbarDetails);
-        tv_toolbarDetails.setText(characterDetail.getTitle());
+        TextView tv_toolbarDetails = findViewById( R.id.tv_toolbarDetails );
+        tv_toolbarDetails.setText( characterDetail.getTitle() );
 
-        if(savedInstanceState == null){
-            detailsFragment = CharacterDetailsFragment.newInstance(
-                    characterDetail.getTitle(), characterDetail.getDescription(), characterDetail.getIconUrl());
+        if (savedInstanceState == null) {
+            CharacterDetailsFragment detailsFragment = CharacterDetailsFragment.newInstance(
+                    characterDetail.getTitle(), characterDetail.getDescription(), characterDetail.getIconUrl() );
             getSupportFragmentManager().beginTransaction()
-                    .replace( R.id.fl_detailContainer, detailsFragment)
+                    .replace( R.id.fl_detailContainer, detailsFragment )
                     .commit();
         }
     }

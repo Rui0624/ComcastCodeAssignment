@@ -4,28 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteY="25dp"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:layout_editor_absoluteY="25dp">
 
     <ImageView
         android:id="@+id/iv_imageIcon"
         android:layout_width="@dimen/image_width"
         android:layout_height="@dimen/image_height"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/image_not_available" />
+        app:srcCompat="@drawable/image_not_available"
+        android:contentDescription="@string/content_description_details" />
 
     <TextView
         android:id="@+id/tv_itemTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="24sp"/>
+        android:textSize="@dimen/title_size"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_itemDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/detail_size" />
 
 </LinearLayout>

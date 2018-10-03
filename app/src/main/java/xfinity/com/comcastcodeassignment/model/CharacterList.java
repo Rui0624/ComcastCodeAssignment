@@ -12,13 +12,13 @@ public class CharacterList {
 
     @SerializedName("RelatedTopics")
     @Expose
-    private List<CharacterModel> characterModelList;
+    private final List<CharacterModel> characterModelList;
 
-    public CharacterList(List<CharacterModel> characterModelList){
+    public CharacterList(List<CharacterModel> characterModelList) {
         this.characterModelList = characterModelList;
     }
 
-    public List<CharacterModel> getCharacterModelList(){
+    public List<CharacterModel> getCharacterModelList() {
         return characterModelList;
     }
 }

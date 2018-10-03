@@ -12,26 +12,27 @@ import xfinity.com.comcastcodeassignment.source.remote.CharacterRemoteDataSource
  */
 public class CharacterRepository {
 
-    private CharacterRemoteDataSource remoteDataSource;
-    private Observable<CharacterList> observable;
+    private final Observable<CharacterList> observable;
 
     /**
      * build the constructor
-     * @param remoteDataSource
+     *
+     * @param remoteDataSource set remoteDataSource to the repository
      */
     public CharacterRepository(CharacterRemoteDataSource remoteDataSource) {
-        this.remoteDataSource = remoteDataSource;
-        observable = this.remoteDataSource.getCharacterService().getCharacterList(BuildConfig.URL, "json");
+        CharacterRemoteDataSource remoteDataSource1 = remoteDataSource;
+        observable = remoteDataSource1.getCharacterService().getCharacterList( BuildConfig.URL, "json" );
     }
 
     /**
      * return the data in Repository as Observable
-     * @return
+     *
+     * @return observable subscribed by observer
      */
-    public Observable<CharacterList> getObservable(){
+    public Observable<CharacterList> getObservable() {
         return observable
-                .subscribeOn( Schedulers.io())
-                .observeOn( AndroidSchedulers.mainThread());
+                .subscribeOn( Schedulers.io() )
+                .observeOn( AndroidSchedulers.mainThread() );
     }
 
 

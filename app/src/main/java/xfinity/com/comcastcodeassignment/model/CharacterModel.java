@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * CharacterModel is the POJO class for each item
  */
-public class CharacterModel implements Serializable{
+public class CharacterModel implements Serializable {
 
     @SerializedName("Text")
     @Expose
@@ -30,13 +30,11 @@ public class CharacterModel implements Serializable{
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public CharacterModel() {
     }
 
     /**
-     *
      * @param icon Icon object of the showcharater
      * @param text text contains title and description
      */
@@ -50,7 +48,6 @@ public class CharacterModel implements Serializable{
     }
 
     /**
-     *
      * @param text description contains title and detail
      */
     public void setText(String text) {
@@ -58,7 +55,6 @@ public class CharacterModel implements Serializable{
     }
 
     /**
-     *
      * @return an Icon object
      */
     public Icon getIcon() {
